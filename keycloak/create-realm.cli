@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Set the admin credentials
+/opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080 --realm master --user admin --password admin
+
+# Create a new realm named 'dre-app'
+/opt/keycloak/bin/kcadm.sh create realms -s realm=dre-app -s enabled=true -s displayName="DRE App"
+
+# Create roles within the 'dre-app' realm
+/opt/keycloak/bin/kcadm.sh create roles -r dre-app -s name=admin -s description="Admin Role"
+/opt/keycloak/bin/kcadm.sh create roles -r dre-app -s name=user -s description="User Role"
+
+# Create users and assign roles
+/opt/keycloak/bin/kcadm.sh create users -r dre-app -s username=admin -s enabled=true
+/opt/keycloak/bin/kcadm.sh set-password -r dre-app --username admin --new-password adminpassword
+/opt/keycloak/bin/kcadm.sh add-roles -r dre-app --uusername admin --rolename admin
+
+/opt/keycloak/bin/kcadm.sh create users -r dre-app -s username=user -s enabled=true
+/opt/keycloak/bin/kcadm.sh set-password -r dre-app --username user --new-password userpassword
+/opt/keycloak/bin/kcadm.sh add-roles -r dre-app --uusername user --rolename user

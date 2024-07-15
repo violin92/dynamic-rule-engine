@@ -1,0 +1,84 @@
+{
+   "realm": "dre-app",
+   "enabled": true,
+   "roles": {
+      "realm": [
+         {
+            "name": "admin",
+            "description": "Admin Role"
+         },
+         {
+            "name": "user",
+            "description": "User Role"
+         }
+      ]
+   },
+   "users": [
+      {
+         "username": "admin",
+         "enabled": true,
+         "emailVerified": true,
+         "firstName": "Ivan",
+         "lastName": "Dimitrov",
+         "email": "admin@viosoft.com",
+         "credentials": [
+            {
+               "type": "password",
+               "value": "serdika2024",
+               "temporary": false
+            }
+         ],
+         "realmRoles": [
+            "admin"
+         ],
+         "requiredActions": []
+      },
+      {
+         "username": "user1",
+         "enabled": true,
+         "emailVerified": true,
+         "firstName": "Ivan",
+         "lastName": "Dimitrov",
+         "email": "ivan@viosoft.com",
+         "credentials": [
+            {
+               "type": "password",
+               "value": "sofia2024",
+               "temporary": false
+            }
+         ],
+         "realmRoles": [
+            "user"
+         ],
+         "requiredActions": []
+      }
+   ],
+   "clients": [
+      {
+         "clientId": "backend-client",
+         "enabled": true,
+         "protocol": "openid-connect",
+         "redirectUris": [
+            "http://localhost:4200/*"
+         ],
+         "secret": "my-client-secret",
+         "clientAuthenticatorType": "client-secret",
+         "directAccessGrantsEnabled": true
+      },
+      {
+         "clientId": "angular-app",
+         "enabled": true,
+         "alwaysDisplayInConsole": true,
+         "redirectUris": [
+            "http://localhost:4200/*"
+         ],
+         "webOrigins": [
+            "http://localhost:4200"
+         ],
+         "directAccessGrantsEnabled": true,
+         "publicClient": true,
+         "protocol": "openid-connect",
+         "standardFlowEnabled": true
+         }
+   ]
+}
